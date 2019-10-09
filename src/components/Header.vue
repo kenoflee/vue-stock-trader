@@ -25,6 +25,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+    nav {
+        margin-bottom: 20px;
+    }
 </style>
