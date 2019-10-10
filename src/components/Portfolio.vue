@@ -6,7 +6,7 @@
             :key="name" type="sell"
             :name="name"
             :price="$store.state.stocks[name]"
-            :quantity="quantity"/>
+            />
     </div>
     <!-- <p v-else>You have no stocks in your portfolio.</p> -->
 </template>

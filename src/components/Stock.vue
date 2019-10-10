@@ -6,7 +6,7 @@
             <b-button @click="sell({name, quantityToBuy, price})" v-else variant="outline-danger">Sell</b-button>
         </div>
 
-        <span v-if="$store.state.portfolio[name] > 0" class="quantity">quantity: {{$store.state.portfolio[name]}}</span>
+        <span v-if="render" class="quantity">quantity: {{$store.state.portfolio[name]}}</span>
     </b-card>
 </template>
 
@@ -21,8 +21,8 @@ export default {
     },
     computed: {
         render() {
-            return (type === 'sell' && quantity === 0) ? false : true;
-        }
+            return (this.type === 'sell' && this.$store.state.portfolio[this.name] > 0) ? true : false;
+        },
     },
     methods: {
 
