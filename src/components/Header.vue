@@ -12,7 +12,7 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-            <b-nav-item>End Day</b-nav-item>
+            <b-nav-item @click="end">End Day</b-nav-item>
             <b-nav-item>${{this.$store.state.wallet}}</b-nav-item>
         </b-navbar-nav>
         </b-collapse>
@@ -21,8 +21,14 @@
 </template>
 
 <script>
-export default {
+import {mapMutations} from 'vuex';
 
+export default {
+    methods: {
+        ...mapMutations([
+            'end'
+        ]),
+    },
 }
 </script>
 

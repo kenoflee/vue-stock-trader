@@ -1,7 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import {getNewStockPrice} from '../util/util';
 
 Vue.use(Vuex);
+
 
 export const store = new Vuex.Store({
     state: {
@@ -29,7 +31,11 @@ export const store = new Vuex.Store({
     getters: {
 
     },
-    setters: {
-
+    mutations: {
+        end: state => {
+            for(let i = 0; i < state.stocks.length; i++) {
+                state.stocks[i].price = getNewStockPrice(state.stocks[i].price);
+            }
+        }
     },
 });
