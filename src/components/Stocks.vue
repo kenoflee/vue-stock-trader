@@ -14,7 +14,7 @@ import Stock from './Stock.vue';
 export default {
     components: {
         Stock,
-    }
+    },
 }
 </script>
 
