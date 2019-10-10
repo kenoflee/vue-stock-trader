@@ -1,8 +1,8 @@
 <template>
     <b-card :border-variant="(type === 'buy') ? 'success' : 'secondary'" :header="name + ' - $' + price" align="left">
         <b-form-input type="number" placeholder="Quantity"></b-form-input>
-        <b-button v-if="type=== 'buy'" variant="outline-success">Add</b-button>
-        <b-button v-else variant="outline-danger">Sell</b-button>
+        <b-button @click="buy" v-if="type=== 'buy'" variant="outline-success">Buy</b-button>
+        <b-button @click="sell" v-else variant="outline-danger">Sell</b-button>
     </b-card>
 </template>
 
@@ -12,6 +12,16 @@ export default {
         type: String,
         price: Number,
         name: String,
+    },
+    methods: {
+        buy() {
+            //this.$store.state.portfolio
+            console.log('buy');
+        },
+        sell() {
+            //this.$store.state.portfolio
+            console.log('sell');
+        }
     }
 }
 </script>
