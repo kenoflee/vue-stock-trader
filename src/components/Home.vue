@@ -1,5 +1,5 @@
 <template>
-    <p>Home</p>
+    <p>Time to put on a big boy pants and learn me some Vuejs!</p>
 </template>
 
 <script>
