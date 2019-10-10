@@ -1,5 +1,11 @@
 <template>
-    <Stock type="sell" name="Google" :price="500" />
+    <div class="Component">
+        <Stock
+            v-for="stock in this.$store.state.portfolio"
+            :key="stock.name" type="sell"
+            :name="stock.name"
+            :price="stock.price"/>
+    </div>
 </template>
 
 <script>

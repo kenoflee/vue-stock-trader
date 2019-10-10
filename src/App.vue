@@ -29,6 +29,9 @@ export default {
   color: #2c3e50;
 }
 
+.card {
+  width: 25%;
+}
 
 .slide-enter {
   opacity: 0;

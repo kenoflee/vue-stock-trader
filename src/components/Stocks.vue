@@ -1,5 +1,12 @@
 <template>
-    <Stock type="buy" name="Google" :price="500" />
+    <div class="Component">
+        <Stock
+            v-for="stock in this.$store.state.stocks"
+            :key="stock.name" type="buy"
+            :name="stock.name"
+            :price="stock.price"
+            />
+    </div>
 </template>
 
 <script>
@@ -12,5 +19,7 @@ export default {
 </script>
 
 <style>
-
+    .Component {
+        display: flex;
+    }
 </style>
