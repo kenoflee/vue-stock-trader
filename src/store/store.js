@@ -46,9 +46,9 @@ export const store = new Vuex.Store({
         update: (state, payload) => {
             //update the quantity of portfolio
             if(!(payload.name in state.portfolio)) {
-                state.portfolio[payload.name] = parseInt(payload.quantityToBuy);
+                state.portfolio[payload.name] = parseInt(payload.quantity);
             } else {
-                state.portfolio[payload.name] += parseInt(payload.quantityToBuy);
+                state.portfolio[payload.name] += parseInt(payload.quantity);
             }
 
             //then update the wallet
@@ -59,11 +59,12 @@ export const store = new Vuex.Store({
     },
     actions: {
         buy: (context, payload) => {
-            payload.net = -1 * +payload.quantityToBuy * payload.price;
+            payload.net = -1 * +payload.quantity * payload.price;
             context.commit('update', payload);
         },
         sell: (context, payload) => {
-            payload.net = +payload.quantityToBuy * payload.price;
+            payload.net = +payload.quantity * payload.price;
+            payload.quantity *= -1;
             context.commit('update', payload);
         },
     },

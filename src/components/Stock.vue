@@ -1,9 +1,11 @@
 <template>
     <b-card :border-variant="(type === 'buy') ? 'success' : 'secondary'" :header="name + ' - $' + price" align="left">
         <div class="input-group">
-            <b-form-input :min="0" v-model="quantityToBuy" type="number" placeholder="Quantity"></b-form-input>
-            <b-button @click="buy({name, quantityToBuy, price})" v-if="type=== 'buy'" variant="outline-success">Buy</b-button>
-            <b-button @click="sell({name, quantityToBuy, price})" v-else variant="outline-danger">Sell</b-button>
+            <b-form-input v-if="type=== 'buy'" :min="0" v-model="quantity" type="number" placeholder="Quantity"></b-form-input>
+            <b-form-input v-else :min="0" :max="$store.state.portfolio[name]" v-model="quantity" type="number" placeholder="Quantity"></b-form-input>
+
+            <b-button @click="buy({name, quantity, price})" v-if="type=== 'buy'" variant="outline-success">Buy</b-button>
+            <b-button @click="sell({name, quantity, price})" v-else variant="outline-danger">Sell</b-button>
         </div>
 
         <span v-if="render" class="quantity">quantity: {{$store.state.portfolio[name]}}</span>
@@ -33,7 +35,7 @@ export default {
     },
     data() {
         return {
-            quantityToBuy: 0,
+            quantity: 0,
         }
     },
 }
