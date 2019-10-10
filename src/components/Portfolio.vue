@@ -1,12 +1,14 @@
 <template>
-    <div class="Component" v-if="this.$store.state.portfolio.length > 0">
+    <!-- v-if="this.$store.state.portfolio.length > 0" -->
+    <div class="Component">
         <Stock
-            v-for="stock in this.$store.state.portfolio"
-            :key="stock.name" type="sell"
-            :name="stock.name"
-            :price="stock.price"/>
+            v-for="(quantity, name) in this.$store.state.portfolio"
+            :key="name" type="sell"
+            :name="name"
+            :price="$store.state.stocks[name]"
+            :quantity="quantity"/>
     </div>
-    <p v-else>You have no stocks in your portfolio.</p>
+    <!-- <p v-else>You have no stocks in your portfolio.</p> -->
 </template>
 
 <script>

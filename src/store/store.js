@@ -13,31 +13,20 @@ export const store = new Vuex.Store({
             stockname: quantity
             */
         },
-        stocks: [
-            {
-                name: 'Google',
-                price: 500,
-            },
-            {
-                name: 'Tesla',
-                price: 200,
-            },
-            {
-                name: 'Facebook',
-                price: 250,
-            },
-            {
-                name: 'Uber',
-                price: 100,
-            }
-        ],
+        stocks: {
+            Google: 500,
+            Tesla: 200,
+            Facebook: 250,
+            Uber: 100,
+        },
     },
     getters: {
         updatedWallet: state => {
-            let totalExpense = 0;
-            for(const stock of state.stocks) {
-                totalExpense += stock.price * stock.quantity;
-            }
+            // let totalExpense = 0;
+            // for(const stock of state.stocks) {
+            //     totalExpense += stock.price * stock.quantity;
+            // }
+            // return state.wallet;
             return state.wallet;
         },
     },
@@ -57,22 +46,24 @@ export const store = new Vuex.Store({
         update: (state, payload) => {
             //update the quantity of portfolio
             if(!(payload.name in state.portfolio)) {
-                state.portfolio[payload.name] = parseInt(payload.quantity);
+                state.portfolio[payload.name] = parseInt(payload.quantityToBuy);
             } else {
-                state.portfolio[payload.name] += parseInt(payload.quantity);
+                state.portfolio[payload.name] += parseInt(payload.quantityToBuy);
             }
 
             //then update the wallet
             state.wallet += payload.net;
+
+            console.log(state.portfolio);
         },
     },
     actions: {
         buy: (context, payload) => {
-            payload.net = -1 * +payload.quantity * payload.price;
+            payload.net = -1 * +payload.quantityToBuy * payload.price;
             context.commit('update', payload);
         },
         sell: (context, payload) => {
-            payload.net = +payload.quantity * payload.price;
+            payload.net = +payload.quantityToBuy * payload.price;
             context.commit('update', payload);
         },
     },
