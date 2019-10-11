@@ -1,19 +1,24 @@
 <template>
-    <!-- v-if="this.$store.state.portfolio.length > 0" -->
-    <div class="Component">
+    <div class="Component" v-if="Object.keys(this.portfolio).length > 0">
         <Stock
-            v-for="(quantity, name) in this.$store.state.portfolio"
+            v-for="(quantity, name) in this.portfolio"
             :key="name" type="sell"
             :name="name"
             :price="$store.state.stocks[name]"
             />
     </div>
-    <!-- <p v-else>You have no stocks in your portfolio.</p> -->
+    <p v-else>You have no stocks in your portfolio.</p>
 </template>
 
 <script>
 import Stock from './Stock.vue';
+import { mapGetters } from 'vuex';
 export default {
+    data() {
+        return {
+            portfolio: this.$store.getters.portfolio,
+        }
+    },
     components: {
         Stock,
     }
