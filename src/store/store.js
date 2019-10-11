@@ -12,6 +12,10 @@ export const store = new Vuex.Store({
             /*
             stockname: quantity
             */
+            Google: 0,
+            Tesla: 0,
+            Facebook: 0,
+            Uber: 0,
         },
         stocks: {
             Google: 500,
@@ -49,14 +53,8 @@ export const store = new Vuex.Store({
                 state.portfolio[payload.name] += parseInt(payload.quantity);
             }
 
-            if(state.portfolio[payload.name] === 0) {
-                delete state.portfolio[payload.name];
-            }
-
             //then update the wallet
             state.wallet += payload.net;
-
-            console.log(state.portfolio);
         },
     },
     actions: {

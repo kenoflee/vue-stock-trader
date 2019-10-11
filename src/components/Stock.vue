@@ -1,5 +1,8 @@
 <template>
-    <b-card :border-variant="(type === 'buy') ? 'success' : 'secondary'" :header="name + ' - $' + price" align="left">
+    <b-card 
+        v-if="render"
+        :border-variant="(type === 'buy') ? 'success' : 'secondary'" 
+        :header="name + ' - $' + price" align="left">
         <div class="input-group">
             <b-form-input v-if="type=== 'buy'" :min="0" v-model="quantity" type="number" placeholder="Quantity"></b-form-input>
             <b-form-input v-else :min="0" :max="$store.state.portfolio[name]" v-model="quantity" type="number" placeholder="Quantity"></b-form-input>
@@ -23,11 +26,10 @@ export default {
     },
     computed: {
         render() {
-            return (this.type === 'sell' && this.$store.state.portfolio[this.name] > 0) ? true : false;
+            return (this.type === 'sell' && this.$store.state.portfolio[this.name] === 0) ? false : true;
         },
     },
     methods: {
-
         ...mapActions([
             'buy',
             'sell',
