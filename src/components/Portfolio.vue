@@ -1,5 +1,5 @@
 <template>
-    <div class="Component" v-if="Object.keys(this.portfolio).length > 0">
+    <div class="Component" >
         <Stock
             v-for="(quantity, name) in this.portfolio"
             :key="name" type="sell"
@@ -7,7 +7,7 @@
             :price="$store.state.stocks[name]"
             />
     </div>
-    <p v-else>You have no stocks in your portfolio.</p>
+    <!-- <p v-else>You have no stocks in your portfolio.</p> -->
 </template>
 
 <script>
